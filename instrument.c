@@ -73,11 +73,11 @@ static PyObject* prefixinject(PyObject *self, PyObject *args) {
     if (inject_ok && fn_ok){
 
       PyObject 
-	*newconsts,
-	*newnames,
-	*newvarnames,
-	*newfreevars, 
-	*newcellvars;
+	*newconsts = NULL,
+	*newnames = NULL,
+	*newvarnames = NULL,
+	*newfreevars = NULL, 
+	*newcellvars = NULL;
       
       merge_tuple(inject->co_consts, fn->co_consts, newconsts);
       merge_tuple(inject->co_names, fn->co_names,  newnames);
@@ -85,7 +85,7 @@ static PyObject* prefixinject(PyObject *self, PyObject *args) {
       merge_tuple(inject->co_freevars, fn->co_freevars, newfreevars);
       merge_tuple(inject->co_cellvars, fn->co_cellvars, newcellvars);
 
-      char *newcode;
+      char *newcode = NULL;
       long newcode_size = merge_bytecodes(inject, fn, newcode);
 
       return (PyObject*) PyCode_New(inject->co_argcount + fn->co_argcount,
@@ -115,8 +115,7 @@ static PyObject* prefixinject(PyObject *self, PyObject *args) {
 
 static PyMethodDef InstrumentMethods[] = {
   {"prefixinject", (PyCFunction) prefixinject, METH_VARARGS,
-   "Creates a new merged objects, so the first code argument is executed before
- the second in the same frame."},
+   "Creates a new merged objects, so the first code argument is executed before the second in the same frame."},
   {NULL, NULL, 0, NULL}
 };
 
