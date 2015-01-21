@@ -1,0 +1,11 @@
+build
+#*
+#.*
+.*~
+#instrument.#
+README.md~
+instrument.c~
+test.py~
+setup.py~
+instrument.h~
+#instrument.#
