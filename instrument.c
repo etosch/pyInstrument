@@ -186,7 +186,7 @@ static PyMethodDef InstrumentMethods[] = {
 
 static PyObject *InstrumentError;
 
-PyMODINIT_FUNC initinstrument() { 
+PyMODINIT_FUNC initinstrument(void) { 
   PyObject *m;
   m = Py_InitModule("instrument", InstrumentMethods);
   if (m == NULL)

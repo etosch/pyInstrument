@@ -1,12 +1,12 @@
-FLAGS := -I/usr/include/python2.7 -lpython2.7
+FLAGS := -I/usr/include/python2.7 -lpython2.7 -std=c11
 
 .PHONY : all instrument
 
 all: instrument
 
 instrument:
-	sudo rm -rf build
-	sudo python setup.py build install
+	rm -rf build
+	python setup.py build install --user
 
 c: 
 	clang $(FLAGS) instrument.c -o main
