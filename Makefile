@@ -1,4 +1,4 @@
-FLAGS := -I/usr/include/python2.7 -lpython2.7 -std=c11
+FLAGS := -I/usr/include/python2.7 -lpython2.7 -std=c99
 
 .PHONY : all instrument
 
