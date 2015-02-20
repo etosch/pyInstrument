@@ -178,9 +178,22 @@ static PyObject* prefixinject(PyObject *self, PyObject *args) {
   return Py_None;
 }
 
+static PyObject* track_types(PyObject *fn_co_object, PyObject *active_set,
+			     PyObject *arg1, PyObject *type1,
+			     ...)
+{
+  // want to programmatically generate bytecode like:
+  // if arg1 != type1 or arg2 != type1...or argn != typen:
+  //   active_set.add(this)
+  // Need to programmatically turn the above into a PyCode object
+  return Py_None;
+}
+
 static PyMethodDef InstrumentMethods[] = {
   {"prefixinject", (PyCFunction) prefixinject, METH_VARARGS,
    "Creates a new merged objects, so the first code argument is executed before the second in the same frame."},
+  {"track_types", (PyCFunction) track_types, METH_VARARGS,
+   "Moves the function back into the active set if we encounter types that don't match what we've seen before."},
   {NULL, NULL, 0, NULL}
 };
 

@@ -6,7 +6,7 @@ all: instrument
 
 instrument:
 	rm -rf build
-	python setup.py build install --user
+	python setup.py build install #--user
 
 c: 
 	clang $(FLAGS) instrument.c -o main
